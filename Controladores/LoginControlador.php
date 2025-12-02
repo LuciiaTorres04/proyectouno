@@ -1,40 +1,32 @@
 <?php
-$email = $_POST["email"];  // lo que recoge del name del index
-echo $email;
-
-$contrasena = $_POST["contrasena"];
-echo $contrasena;
-
-class Humano {
-    private $edad;
-    private $nombre;
-
-    public function __construct(string $nombre)
-    {
-
-        $this->respirar();
-        $this->nombre=$nombre;
+require_once __DIR__."/../Modelos/UsuarioBBDDModelo.php";
+class LoginControlador {
+  public function __construct(){
+    
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $email = $_POST["email"];  // lo que recoge del name del index
+        $contrasena = $_POST["contrasena"];
+        $this->LoginValidar($email, $contrasena); // argumentos
+    } else {
+       $this->Index();
     }
+  }
 
-    public function correr()
-    {
-        return $this->nombre . 'esta corriendo';   
-    }
+  private function Index(){
+    require_once __DIR__ . '/../Vistas/LoginVista.php';
+  }
 
-    private function respirar()
-    {
-        echo 'respirando';
-    }
-
-    // al ser privado hay que hacer encapsulamiento
-    public function nombre()
-    {
-        return $this->nombre;
-    }
+  private function LoginValidar(string $email, string $contrasena){ // han pasado a ser parametros
+    $usuarioBBDD = new UsuarioBBDD();
+    $usuario = $usuarioBBDD->login($email);
+    var_dump($usuario["contrasena"]);
+  }
 }
+ (new LoginControlador()); // instanciar 
 
-$humano = new Humano("lUcia");
 
 
-echo $humano->nombre();
+
+
+
 
