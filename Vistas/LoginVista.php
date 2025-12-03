@@ -44,6 +44,11 @@
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
+                    <?php if (!empty($errorDeLogin)): ?>
+                        <div class="alert alert-danger mt-2" role="alert">
+                            <?= $errorDeLogin ?>
+                        </div>
+                    <?php endif; ?>
                     <p class="text-center mt-3 mb-0">
                         ¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a>
                     </p>

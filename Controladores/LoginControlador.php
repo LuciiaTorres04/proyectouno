@@ -19,7 +19,16 @@ class LoginControlador {
   private function LoginValidar(string $email, string $contrasena){ // han pasado a ser parametros
     $usuarioBBDD = new UsuarioBBDD();
     $usuario = $usuarioBBDD->login($email);
-    var_dump($usuario["contrasena"]);
+    if ($usuario && password_verify($contrasena, $usuario["contrasena"])) {
+      session_start();
+      $_SESSION["usuarioId"] = $usuario["id"];
+      $_SESSION["usuarioNombres"] = $usuario["nombres"];
+      header("Location: ProductosControlador.php");
+
+    } else {
+      $errorDeLogin = "Ha ocurrido un error";
+      require_once __DIR__ . '/../Vistas/LoginVista.php';
+    }
   }
 }
  (new LoginControlador()); // instanciar 

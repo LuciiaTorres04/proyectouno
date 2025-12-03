@@ -7,7 +7,6 @@ class UsuarioBBDD {
     public function __construct() {
       $this->db=(new Conexion()); 
       $this->db=$this->db->conexion();
-      var_dump($this->db);
     }
 
     public function registrar($dni, $apellidos, $nombre, $email, $password) {
