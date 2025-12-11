@@ -50,7 +50,7 @@
                         </div>
                     <?php endif; ?>
                     <p class="text-center mt-3 mb-0">
-                        ¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a>
+                        ¿No tienes cuenta? <a href="../Controladores/RegistroControlador.php">Regístrate aquí</a>
                     </p>
                 </form>
             </div>

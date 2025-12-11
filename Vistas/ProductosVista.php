@@ -1,10 +1,3 @@
-<?php 
-session_start();
-
-// Aquí deberías recibir $productos desde el controlador:
-// $productos = [...];  // array de productos
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

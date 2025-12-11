@@ -9,16 +9,16 @@ class UsuarioBBDD {
       $this->db=$this->db->conexion();
     }
 
-    public function registrar($dni, $apellidos, $nombre, $email, $password) {
-        $sql = "INSERT INTO usuarios (dni, apellidos, nombre, email, password)
-                VALUES (:dni, :apellidos, :nombre, :email, :password)";
+    public function registrar($nombres, $apellidos, $dni, $email, $contrasena) {
+        $sql = "INSERT INTO usuarios (dni, apellidos, nombres, email, contrasena, estado)
+                VALUES (:dni, :apellidos, :nombre, :email, :contrasena, 1)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
             ':dni' => $dni,
             ':apellidos' => $apellidos,
-            ':nombre' => $nombre,
+            ':nombre' => $nombres,
             ':email' => $email,
-            ':password' => password_hash($password, PASSWORD_DEFAULT)
+            ':contrasena' => $contrasena
         ]);
         return true;
     }

@@ -8,12 +8,30 @@ class LoginControlador {
         $contrasena = $_POST["contrasena"];
         $this->LoginValidar($email, $contrasena); // argumentos
     } else {
-       $this->Index();
+      if(isset($_GET['logout']) && $_GET['logout'] == 1){
+        $this->Salir();
+      } else if (isset($_GET['registro']) && $_GET['registro'] == 1) {
+        $this->Registrar();
+      } else { 
+        $this->Index();
+      }
     }
+  }
+
+  private function Salir(){
+    session_start();
+    session_destroy();
+    header('Location: ../Controladores/LoginControlador.php');
+    exit;
+
   }
 
   private function Index(){
     require_once __DIR__ . '/../Vistas/LoginVista.php';
+  }
+
+  private function Registrar(){
+    require_once __DIR__ . '/../Vistas/RegistrarVista.php';
   }
 
   private function LoginValidar(string $email, string $contrasena){ // han pasado a ser parametros
